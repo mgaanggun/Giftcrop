@@ -1,0 +1,137 @@
+---
+export const prerender = false;
+
+import BlogPost from "../../layouts/BlogPost.astro";
+import BlogCard from "../../components/card/BlogCard.astro";
+import db from "../../lib/db";
+import { marked } from "marked";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+let postData: any = null;
+let relatedPosts: any[] = [];
+
+try {
+  const { data, error } = await db.from("posts").select("*").eq("slug", slug).limit(1);
+  if (data && data.length > 0) {
+    postData = data[0];
+  }
+} catch (e) {
+  console.error(e);
+}
+
+if (!postData) {
+  return Astro.redirect("/404");
+}
+
+try {
+  // Fetch related posts (latest posts excluding current)
+  const { data, error } = await db.from("posts")
+    .select("*")
+    .neq("id", postData.id)
+    .order("created_at", { ascending: false })
+    .limit(3);
+  if (data) {
+    relatedPosts = data.map(post => ({
+      id: post.slug,
+      slug: "/blog",
+      data: {
+        title: post.title,
+        description: post.excerpt || "",
+        pubDate: new Date(post.created_at),
+        heroImage: post.thumbnail_url || undefined,
+        author: { name: "Admin", id: "admin" }
+      }
+    }));
+  }
+} catch (e) {
+  console.error("Error fetching related posts:", e);
+}
+
+let parsedContent = await marked.parse(postData.content, { breaks: true });
+
+// Extract TOC and add IDs to headings in HTML
+const toc: { depth: number; text: string; slug: string }[] = [];
+parsedContent = parsedContent.replace(/<h([1-6])(.*?)>(.*?)<\/h\1>/g, (match, level, attrs, text) => {
+  // Strip inner HTML for slug generation
+  const cleanText = text.replace(/<[^>]+>/g, '').trim();
+  const headingSlug = cleanText.toLowerCase().replace(/[^\w]+/g, '-');
+  
+  // Add to TOC if it's h2 or h3
+  const depth = parseInt(level);
+  if (depth === 2 || depth === 3) {
+    toc.push({ depth, text: cleanText, slug: headingSlug });
+  }
+  
+  return `<h${level}${attrs} id="${headingSlug}">${text}</h${level}>`;
+});
+
+// Create the data object for BlogPost Layout
+const data = {
+  title: postData.title,
+  description: postData.excerpt || "",
+  pubDate: new Date(postData.created_at),
+  heroImage: postData.thumbnail_url || undefined
+};
+---
+
+<BlogPost {...data} breadcrumbParent="Blog">
+  <div class="flex flex-col lg:flex-row gap-12 relative items-start">
+    <div class="w-full lg:w-3/4">
+      <article class="prose prose-lg md:prose-xl max-w-none text-base-content prose-headings:text-main-200 prose-headings:scroll-mt-24 prose-p:text-base-content/80 prose-a:text-main-200 hover:prose-a:text-main-100 prose-img:rounded-3xl prose-strong:text-base-content prose-ul:text-base-content/80 prose-ol:text-base-content/80 leading-relaxed tracking-wide" set:html={parsedContent}></article>
+    </div>
+    
+    <div class="w-full lg:w-1/4 hidden lg:block">
+      <div class="sticky top-28 space-y-6">
+        <div class="bg-base-200/30 p-6 rounded-3xl border border-base-200 shadow-sm">
+          <h3 class="text-xl font-bold mb-4 text-base-content border-b border-base-200 pb-3">Daftar Isi</h3>
+          {toc.length > 0 ? (
+            <ul class="space-y-3 text-sm">
+              {toc.map((item) => (
+                <li class={`leading-snug ${item.depth === 3 ? 'ml-4' : ''}`}>
+                  <a href={`#${item.slug}`} class="text-base-content/70 hover:text-main-200 transition-colors block py-1 font-medium">{item.text}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="text-sm text-base-content/60 italic">Tidak ada daftar isi</p>
+          )}
+        </div>
+
+        {relatedPosts.length > 0 && (
+          <div class="pt-2">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-1 h-5 bg-[#0179B4] rounded-full"></div>
+              <h3 class="text-base font-bold text-[#0179B4] tracking-tight">Artikel Terkait</h3>
+            </div>
+            <ul class="space-y-4">
+              {relatedPosts.map(p => (
+                <li>
+                  <a href={`/blog/${p.id}`} class="group flex gap-3 items-center">
+                    <div class="w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-base-200 shadow-sm">
+                      {p.data.heroImage ? (
+                        <img src={p.data.heroImage} alt={p.data.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      ) : (
+                        <div class="w-full h-full bg-base-200 flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-base-content/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </div>
+                      )}
+                    </div>
+                    <div class="flex flex-col gap-0.5">
+                      <h4 class="font-bold text-[13px] text-base-content group-hover:text-[#0179B4] transition-colors line-clamp-2 leading-snug">{p.data.title}</h4>
+                      <span class="text-[11px] text-base-content/50 font-medium">{p.data.pubDate.toLocaleDateString("id-ID", { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</BlogPost>

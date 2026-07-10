@@ -1,0 +1,65 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<section class="section relative z-0">
+  <div class="container">
+    <hgroup class="text-center max-w-5xl mx-auto">
+      <h2>
+        Cara <span
+          class="bg-linear-to-r from-[#0179B4] to-[#88D8FF] bg-clip-text text-transparent"
+          >platform kami</span
+        > bekerja
+      </h2>
+      <p>
+        Memesan souvenir korporat premium di GiftCorp sangat mudah. Ikuti
+        langkah-langkah sederhana berikut untuk memulai pesanan hadiah kustom Anda:
+      </p>
+    </hgroup>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 items-center">
+      <div class="grid gap-10 grid-cols-[52px_1fr] relative after:absolute after:top-0 after:left-6.5 after:border-main-200 after:border-dashed after:border-l-2 after:bg-no-repeat after:w-13 after:h-[calc((100%*2)/3+20px)] after:-z-10 order-2 lg:order-1 dark:text-white">
+		<div class="w-13 h-13 rounded-full bg-[linear-gradient(45deg,#A7E2FF,#0095DE)] text-white text-xl font-semibold flex items-center justify-center">1</div>
+		<div>
+			<h3>Jelajahi Katalog Kami</h3>
+			<p>
+				Telusuri koleksi lengkap souvenir korporat premium kami — mulai dari tumbler, notebook, hingga gadget teknologi dan produk ramah lingkungan. Filter berdasarkan kategori, budget, atau acara.
+			</p>
+		</div>
+		<div class="w-13 h-13 rounded-full bg-[linear-gradient(45deg,#A7E2FF,#0095DE)] text-white text-xl font-semibold flex items-center justify-center">2</div>
+		<div>
+			<h3>Kustomisasi Pesanan Anda</h3>
+			<p>
+				Tambahkan logo perusahaan, pilih warna, tentukan opsi kemasan, dan tentukan jumlah pesanan. Tim desain kami akan membuat mockup untuk persetujuan Anda sebelum produksi.
+			</p>
+		</div>
+		<div class="w-13 h-13 rounded-full bg-[linear-gradient(45deg,#A7E2FF,#0095DE)] text-white text-xl font-semibold flex items-center justify-center">3</div>
+		<div>
+			<h3>Kami Antar ke Tempat Anda</h3>
+			<p>
+				Santai saja, biarkan kami yang mengurus produksi dan pengiriman. Kami mengirim ke seluruh Indonesia dengan tracking, memastikan hadiah Anda tiba tepat waktu dan dalam kondisi sempurna.
+			</p>
+		</div>
+
+	  </div>
+      <div class="grid order-1 lg:order-2">
+        <Image
+          src="/img/img3.png"
+          alt="Cara pemesanan souvenir korporat"
+          width={374}
+          height={398}
+          format="webp"
+          quality="low"
+          class="w-full h-auto mx-auto [grid-area:1/1/2/2]"
+        />
+        <div
+          class="bg-white p-4 rounded-xl shadow hidden sm:flex sm:max-w-[60%] text-main-200 text-lg items-center gap-3 [grid-area:1/1/2/2] mt-[80%] ml-auto mb-auto"
+        >
+          <svg class="icon" width="30" height="30">
+            <use xlink:href="#star"></use>
+          </svg>
+          Kualitas Premium Terjamin
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
