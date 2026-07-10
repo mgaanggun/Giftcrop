@@ -1,0 +1,85 @@
+---
+export const prerender = false;
+
+import Layout from "../../layouts/MainLayout.astro";
+import BlogCard from "../../components/card/BlogCard.astro";
+import { SITE_DESCRIPTION } from "../../consts";
+import db from "../../lib/db";
+
+let posts: any[] = [];
+try {
+  const { data, error } = await db.from("posts").select("*").order("created_at", { ascending: false });
+  if (data) {
+    posts = data;
+  }
+} catch (e) {
+  console.error(e);
+}
+
+// Map the DB posts into the format expected by BlogCard
+const mappedPosts = posts.map(post => ({
+  id: post.slug,
+  slug: "/blog",
+  data: {
+    title: post.title,
+    description: post.excerpt || "",
+    pubDate: new Date(post.created_at),
+    heroImage: post.thumbnail_url || undefined,
+    author: { name: "Admin", id: "admin" } // Stub
+  }
+}));
+
+// Mock the page object since we removed getStaticPaths and pagination for now
+const page = {
+  data: mappedPosts,
+  lastPage: 1
+};
+
+const site = Astro.site?.toString() ?? "";
+---
+
+<Layout title="Blog - Berita & Artikel" description={SITE_DESCRIPTION} pubDate={new Date()}>
+  <div class="min-h-[70vh] bg-base-100 pb-20">
+    <!-- Header Section -->
+    <section class="relative py-8 lg:py-12 bg-base-200/30 overflow-hidden">
+      <div class="container mx-auto px-4 relative z-10">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs text-sm text-base-content/60 mb-6 font-medium">
+          <ul class="flex! flex-wrap">
+            <li><a href="/" class="hover:text-main-200 transition-colors">Beranda</a></li>
+            <li class="text-main-200">Blog</li>
+          </ul>
+        </div>
+        
+        <div class="text-center mt-4">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-base-content">
+            <span class="bg-linear-to-r from-[#0179B4] to-[#88D8FF] bg-clip-text text-transparent">Blog & Artikel</span>
+          </h1>
+          <p class="text-lg md:text-xl text-base-content/80 max-w-2xl mx-auto font-medium">Temukan wawasan terbaru, berita perusahaan, dan artikel menarik lainnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <div class="container mx-auto px-4 py-16">
+      <section>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+          {
+            page.data.map((post) => (
+              <li class="h-full">
+                <BlogCard {...post} />
+              </li>
+            ))
+          }
+        </ul>
+        
+        {page.data.length === 0 && (
+          <div class="text-center py-20 bg-base-200/50 rounded-3xl border-main-200 border-2 max-w-3xl mx-auto">
+            <h3 class="text-2xl font-bold text-main-200 mb-2">Belum Ada Artikel</h3>
+            <p class="text-base-content/80">Artikel dan berita terbaru akan segera hadir di sini.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  </div>
+</Layout>

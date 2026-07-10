@@ -1,0 +1,93 @@
+---
+const today = new Date();
+import Image from "astro/components/Image.astro";
+---
+
+<footer class="footer w-full bg-[#F2FAFF] gap-0 dark:bg-black">
+  <div class="footer-top w-full py-15">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10">
+        <div>
+          <a href="/">
+            <Image
+              src="/img/logo2.svg"
+              alt="Logo GiftCorp"
+              width="168"
+              height="144"
+            />
+          </a>
+          <p class="mt-4">
+            Mitra terpercaya Anda untuk souvenir kantor dan hadiah korporat premium. Custom branding, kemasan elegan, dan pengiriman terpercaya.
+          </p>
+
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-10">
+          <div>
+            <h3 class="text-main-200">Bantuan & Navigasi</h3>
+
+            <nav class="grid gap-3">
+              <a href="/about" class="hover:text-main-200 hover:underline">Tentang Kami</a>
+              <a href="/produk" class="hover:text-main-200 hover:underline">Semua Produk</a>
+              <a href="/services" class="hover:text-main-200 hover:underline">Semua Layanan</a>
+              <a href="/blog" class="hover:text-main-200 hover:underline">Artikel & Blog</a>
+              <a href="/contact" class="hover:text-main-200 hover:underline">Hubungi Kami</a>
+            </nav>
+          </div>
+          <div>
+            <h3 class="text-main-200">Layanan Populer</h3>
+
+            <nav class="grid gap-3">
+              <a href="/services" class="hover:text-main-200 hover:underline">Kemasan Kustom</a>
+              <a href="/services" class="hover:text-main-200 hover:underline">Branding Perusahaan</a>
+              <a href="/services" class="hover:text-main-200 hover:underline">Pemesanan Massal</a>
+              <a href="/services" class="hover:text-main-200 hover:underline">Paket Hadiah Premium</a>
+              <a href="/services" class="hover:text-main-200 hover:underline">Merchandise Acara</a>
+            </nav>
+          </div>
+          <div>
+            <h3 class="text-main-200">Informasi Tambahan</h3>
+
+            <nav class="grid gap-3">
+              <a href="/faq" class="hover:text-main-200 hover:underline">FAQ & Bantuan</a>
+              <a href="/privacy" class="hover:text-main-200 hover:underline">Kebijakan Privasi</a>
+              <a href="/terms" class="hover:text-main-200 hover:underline">Syarat & Ketentuan</a>
+              <a href="/contact" class="hover:text-main-200 hover:underline">Info Pengiriman</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-btm w-full">
+    <div class="container pb-5">
+      <hr class="border-t border-main-200 mb-5" />
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+          <div class="flex flex-wrap gap-3 items-center">
+            <a href="https://facebook.com" target="_blank" class="transition hover:-rotate-6" title="Facebook">
+              <svg class="icon" width="32" height="32">
+                <use xlink:href="#soc1"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="transition hover:-rotate-6" title="Instagram">
+              <svg class="icon" width="32" height="32">
+                <use xlink:href="#soc2"></use>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="transition hover:-rotate-6" title="Linkedin">
+              <svg class="icon" width="32" height="32">
+                <use xlink:href="#soc3"></use>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="transition hover:-rotate-6" title="Youtube">
+              <svg class="icon" width="32" height="32">
+                <use xlink:href="#soc4"></use>
+              </svg>
+            </a>
+          </div>
+        <p>
+          GiftCorp &copy; {today.getFullYear()}. Hak Cipta Dilindungi
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

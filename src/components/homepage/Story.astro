@@ -1,0 +1,51 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <article
+      class="bg-[linear-gradient(45deg,#F8FDFF,#FFFFFF)] text-black rounded-2xl p-4 lg:p-10 border-2 border-main-200"
+    >
+      <h2 class="text-center">
+        <span
+          class="bg-linear-to-r from-[#0179B4] to-[#88D8FF] bg-clip-text text-transparent"
+          >Cerita GiftCorp:
+        </span> Kenali kami lebih dekat
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 lg:gap-10 mt-4 lg:mt-10 items-stretch text-center md:text-left">
+        <div>
+          <Image
+            src="/img/img2.webp"
+            alt="Workshop GiftCorp"
+            format="webp"
+            quality="low"
+            width="448"
+            height="344"
+            class="w-auto h-auto mx-auto rounded-xl object-cover"
+          />
+        </div>
+        <div class="h-full flex flex-col justify-between align-start">
+          <p class="mb-5">
+            GiftCorp bukan sekadar penyedia souvenir kantor — kami adalah
+            komitmen untuk membantu perusahaan membangun hubungan yang lebih kuat
+            melalui hadiah berkualitas tinggi dan bermakna. Didirikan oleh tim
+            profesional kreatif dan pakar branding, kami digerakkan oleh misi
+            untuk menghadirkan souvenir korporat yang benar-benar merepresentasikan
+            brand Anda. Platform kami dibangun di atas pilar kualitas,
+            kreativitas, dan kepuasan pelanggan, memastikan setiap hadiah
+            dikurasi dengan cermat dan dikemas dengan indah. Dengan katalog
+            200+ produk premium dan kemitraan dengan produsen terpercaya, kami
+            menjamin hadiah yang memukau — setiap saat.
+          </p>
+          <a
+            href="/services"
+            class="btn bg-[linear-gradient(125deg,var(--color-main-100),var(--color-main-200))] text-white border-0 rounded-xl text-lg py-3 px-6 h-auto shadow-xl hover:shadow-2xl md:mr-auto"
+            >Pelajari lebih lanjut</a
+          >
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

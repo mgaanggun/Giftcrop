@@ -1,0 +1,75 @@
+---
+import Image from "astro/components/Image.astro";
+import { Phone } from  '@lucide/astro';
+
+---
+
+<section class="section overflow-hidden">
+  <div class="container">
+    <hgroup class="text-center max-w-5xl mx-auto">
+      <h2>
+        <span
+          class="bg-linear-to-r from-[#0179B4] to-[#88D8FF] bg-clip-text text-transparent"
+          >Ahli di Bidangnya:</span
+        >
+        <br /> Kenali tim kreatif kami
+      </h2>
+      <p>
+        Tim profesional kreatif kami berdedikasi dalam merancang souvenir
+        korporat yang sempurna. Setiap anggota membawa keahlian desain,
+        pengetahuan industri, dan komitmen terhadap kualitas:
+      </p>
+    </hgroup>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto py-10 relative z-0
+	after:absolute after:top-5 after:-left-10 after:bg-[url('/img/shape/shape5.svg')] after:bg-no-repeat after:w-29 after:h-14.75 after:bg-position-[left_top]] after:bg-contain after:-z-10 
+	before:absolute before:bottom-5 before:-right-10 before:bg-[url('/img/shape/shape6.svg')] before:bg-no-repeat before:w-29 before:h-14.75 before:bg-position-[right_bottom]] before:bg-contain before:z-0
+	">
+		<article class="rounded-3xl text-white bg-gradient-to-br from-[#35BDFF] to-[#008CD0] p-8 flex flex-col items-center text-center shadow-xl relative group hover:-translate-y-2 transition-all duration-300">
+			<div class="w-32 h-32 mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+				<Image
+					src="/img/cm1.webp"
+					alt="Mega Anggun"
+					width={200}
+					height={200}
+					format="webp"
+					quality="high"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+			<h3 class="text-2xl font-bold mb-1">Mega Anggun</h3>
+			<span class="text-main-200 font-bold mb-5 text-sm bg-white px-4 py-1.5 rounded-full shadow-sm">Direktur Kreatif</span>
+			<p class="mb-8 text-white/95 leading-relaxed text-sm md:text-base">
+				Mega memimpin tim desain kami dengan pengalaman lebih dari 10 tahun di bidang desain produk dan branding perusahaan. Kejeliannya terhadap detail dan hasratnya menciptakan hadiah indah telah membantu ratusan perusahaan meningkatkan citra korporat mereka.
+			</p>
+			<a href="/contact" class="btn bg-gray-900 text-white hover:bg-gray-800 border-none rounded-xl px-8 mt-auto h-auto min-h-[2.5rem] py-2 inline-flex items-center gap-2 shadow-md">
+				<span>Hubungi</span>
+				<Phone size={16} class="text-main-200" />
+			</a>
+		</article>
+
+		<article class="rounded-3xl text-white bg-gradient-to-br from-[#35BDFF] to-[#008CD0] p-8 flex flex-col items-center text-center shadow-xl relative group hover:-translate-y-2 transition-all duration-300">
+			<div class="w-32 h-32 mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+				<Image
+					src="/img/cm2.webp"
+					alt="Hawa Nadira"
+					width={200}
+					height={200}
+					format="webp"
+					quality="high"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+			<h3 class="text-2xl font-bold mb-1">Hawa Nadira</h3>
+			<span class="text-main-200 font-bold mb-5 text-sm bg-white px-4 py-1.5 rounded-full shadow-sm">Manajer Produksi</span>
+			<p class="mb-8 text-white/95 leading-relaxed text-sm md:text-base">
+				Hawa mengawasi seluruh proses produksi kami, memastikan setiap pesanan memenuhi standar kualitas yang ketat. Dengan keahlian manajemen rantai pasok, ia menjamin pengiriman tepat waktu dan keunggulan produk yang konsisten.
+			</p>
+			<a href="/contact" class="btn bg-gray-900 text-white hover:bg-gray-800 border-none rounded-xl px-8 mt-auto h-auto min-h-[2.5rem] py-2 inline-flex items-center gap-2 shadow-md">
+				<span>Hubungi</span>
+				<Phone size={16} class="text-main-200" />
+			</a>
+		</article>
+	</div>
+  </div>
+</section>

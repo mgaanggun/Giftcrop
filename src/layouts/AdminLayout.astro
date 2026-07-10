@@ -1,0 +1,114 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { LayoutDashboard, Newspaper, Briefcase, Box, Mail, LogOut, Menu } from "@lucide/astro";
+
+type Props = {
+  title: string;
+  description?: string;
+  image?: any;
+  pubDate?: Date;
+  updatedDate?: Date;
+};
+
+const { title, description = "Admin Dashboard", image } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const menuItems = [
+  { path: "/admin", label: "Blog Posts", icon: Newspaper },
+  { path: "/admin/layanan", label: "Layanan", icon: Briefcase },
+  { path: "/admin/produk", label: "Produk", icon: Box },
+  { path: "/admin/pesan", label: "Pesan Masuk", icon: Mail },
+];
+---
+
+<html lang="en" data-theme="light">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 h-screen overflow-hidden">
+    <div class="drawer lg:drawer-open h-full">
+      <input id="admin-drawer" type="checkbox" class="drawer-toggle" />
+      
+      <!-- Main Content -->
+      <div class="drawer-content flex flex-col h-full overflow-y-auto overflow-x-hidden">
+        <!-- Topbar for mobile -->
+        <div class="w-full navbar bg-white border-b border-gray-200 lg:hidden sticky top-0 z-50">
+          <div class="flex-none">
+            <label for="admin-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost text-main-200">
+              <Menu size={24} />
+            </label>
+          </div>
+          <div class="flex-1 px-2 mx-2 font-bold text-main-200 text-xl">
+            GiftCorp Admin
+          </div>
+        </div>
+        
+        <!-- Slot Content -->
+        <main class="flex-1 p-4 lg:p-8 bg-[#F8FDFF]">
+          <slot />
+        </main>
+      </div> 
+      
+      <!-- Sidebar -->
+      <div class="drawer-side z-50">
+        <label for="admin-drawer" aria-label="close sidebar" class="drawer-overlay"></label> 
+        <div class="menu p-4 w-72 min-h-full bg-white border-r border-gray-200 text-base-content flex flex-col shadow-xl lg:shadow-none">
+          <!-- Brand -->
+          <div class="flex items-center gap-3 px-4 py-6 mb-4 border-b border-gray-100">
+            <div class="w-10 h-10 bg-main-200 text-white flex items-center justify-center rounded-xl shadow-md font-bold text-xl">
+              G
+            </div>
+            <div>
+              <h1 class="text-xl font-bold text-gray-800 tracking-tight">GiftCorp</h1>
+              <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">Admin Panel</p>
+            </div>
+          </div>
+          
+          <!-- Navigation -->
+          <ul class="flex-1 space-y-2">
+            <li class="menu-title text-xs text-gray-400 font-semibold uppercase tracking-wider px-4 mb-2">Menu Utama</li>
+            {menuItems.map((item) => {
+              const isActive = currentPath === item.path || (item.path !== '/admin' && currentPath.startsWith(item.path));
+              const Icon = item.icon;
+              return (
+                <li>
+                  <a 
+                    href={item.path} 
+                    class={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+                      isActive 
+                        ? "bg-main-50 text-main-200 shadow-sm" 
+                        : "text-gray-600 hover:bg-gray-50 hover:text-main-200"
+                    }`}
+                  >
+                    <Icon size={20} class={isActive ? "text-main-200" : "text-gray-400"} />
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          
+          <!-- Bottom actions -->
+          <div class="border-t border-gray-100 pt-4 pb-2">
+            <ul class="space-y-2">
+              <li>
+                <a href="/" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50 hover:text-main-200 transition-all font-medium">
+                  <LayoutDashboard size={20} class="text-gray-400" />
+                  Lihat Website
+                </a>
+              </li>
+              <li>
+                <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-all font-medium">
+                  <LogOut size={20} />
+                  Keluar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
