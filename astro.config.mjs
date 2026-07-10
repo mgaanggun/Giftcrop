@@ -4,15 +4,13 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://heal-net-self.vercel.app/",
+  site: "https://giftcorp.vercel.app/",
   output: "server",
-  adapter: node({
-    mode: "standalone"
-  }),
+  adapter: vercel(),
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
