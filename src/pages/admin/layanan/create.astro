@@ -20,24 +20,29 @@ if (Astro.request.method === "POST") {
     
     if (image_file && typeof image_file === "object" && "size" in image_file && image_file.size > 0) {
       const file = image_file as File;
-      const fs = await import("node:fs");
-      const path = await import("node:path");
       const sharp = (await import("sharp")).default;
       
       const baseName = file.name.split('.').slice(0, -1).join('.') || file.name;
       const fileName = `${Date.now()}-${baseName.replace(/[^a-zA-Z0-9.-]/g, "_")}.webp`;
-      const uploadDir = path.join(process.cwd(), "public", "uploads", "services");
       
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
-      
-      const filePath = path.join(uploadDir, fileName);
       const buffer = Buffer.from(await file.arrayBuffer());
+      const webpBuffer = await sharp(buffer).webp().toBuffer();
       
-      await sharp(buffer).webp().toFile(filePath);
+      const { error: uploadError } = await db.storage
+        .from('uploads')
+        .upload(`services/${fileName}`, webpBuffer, {
+          contentType: 'image/webp',
+          cacheControl: '3600',
+          upsert: false
+        });
+        
+      if (uploadError) throw new Error("Gagal mengupload gambar: " + uploadError.message);
       
-      hero_image = `/uploads/services/${fileName}`;
+      const { data: publicUrlData } = db.storage
+        .from('uploads')
+        .getPublicUrl(`services/${fileName}`);
+        
+      hero_image = publicUrlData.publicUrl;
     }
 
     if (!title || !slug || !content) {
