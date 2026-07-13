@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://heal-net-self.vercel.app/",
+  site: "https://giftcrop.vercel.app",
   output: "server",
   adapter: vercel(),
   integrations: [mdx(), sitemap()],
