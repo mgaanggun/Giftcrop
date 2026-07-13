@@ -53,7 +53,7 @@ const menuItems = [
       <!-- Main Content -->
       <div class="drawer-content flex flex-col h-full overflow-y-auto overflow-x-hidden">
         <!-- Topbar for mobile -->
-        <div class="w-full navbar bg-white dark:bg-base-100 border-b border-gray-200 dark:border-base-300 lg:hidden sticky top-0 z-50">
+        <div class="w-full navbar bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 lg:hidden sticky top-0 z-50 transition-colors">
           <div class="flex-none">
             <label for="admin-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost text-main-200">
               <Menu size={24} />
@@ -68,7 +68,7 @@ const menuItems = [
         </div>
         
         <!-- Slot Content -->
-        <main class="flex-1 p-4 lg:p-8 bg-[#F8FDFF] dark:bg-base-200 transition-colors">
+        <main class="flex-1 p-4 lg:p-8 bg-[#F8FDFF] dark:bg-gray-950 transition-colors">
           <slot />
         </main>
       </div> 
@@ -76,7 +76,7 @@ const menuItems = [
       <!-- Sidebar -->
       <div class="drawer-side z-50">
         <label for="admin-drawer" aria-label="close sidebar" class="drawer-overlay"></label> 
-        <div class="p-4 w-72 min-h-full bg-white dark:bg-base-100 border-r border-gray-200 dark:border-base-300 text-base-content flex flex-col shadow-xl lg:shadow-none transition-colors">
+        <div class="p-4 w-72 min-h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 text-base-content flex flex-col shadow-xl lg:shadow-none transition-colors">
           <!-- Brand -->
           <div class="flex items-center gap-3 px-4 py-6 mb-4 border-b border-gray-100">
             <div class="w-10 h-10 bg-main-200 text-white flex items-center justify-center rounded-xl shadow-md font-bold text-xl">
@@ -102,7 +102,7 @@ const menuItems = [
                     class={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                       isActive 
                         ? "bg-main-50 dark:bg-main-200/20 text-main-200 shadow-sm" 
-                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-base-200 hover:text-main-200 dark:hover:text-main-100"
+                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-main-200 dark:hover:text-main-100"
                     }`}
                   >
                     <Icon size={20} class={isActive ? "text-main-200" : "text-gray-400"} />
@@ -114,10 +114,10 @@ const menuItems = [
           </ul>
           
           <!-- Bottom actions -->
-          <div class="border-t border-gray-100 dark:border-base-300 pt-4 pb-2">
+          <div class="border-t border-gray-100 dark:border-gray-800 pt-4 pb-2">
             <ul class="space-y-2">
               <li>
-                <a href="/" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-base-200 hover:text-main-200 dark:hover:text-main-100 transition-all font-medium">
+                <a href="/" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-main-200 dark:hover:text-main-100 transition-all font-medium">
                   <LayoutDashboard size={20} class="text-gray-400" />
                   Lihat Website
                 </a>

@@ -8,6 +8,8 @@
   --color-main-200: #0277c2;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html,
 body {
   @apply h-full overflow-x-hidden w-full;
