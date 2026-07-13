@@ -2,7 +2,7 @@ import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
 import { E as createComponent, a as renderComponent, f as renderTemplate, g as maybeRenderHead, v as addAttribute } from "./server_CR6e1SMo.mjs";
 import "./_astro_assets_CYMCoJCi.mjs";
 import { t as $$MainLayout } from "./MainLayout_DA7o5NXz.mjs";
-import { t as db_default } from "./db_yf0CV2fq.mjs";
+import { t as db_default } from "./db_DPXSsOFx.mjs";
 //#region src/pages/produk/index.astro
 var produk_exports = /* @__PURE__ */ __exportAll({
 	default: () => $$Index,

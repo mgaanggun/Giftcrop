@@ -2,7 +2,7 @@ import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
 import { E as createComponent, T as createAstro, a as renderComponent, f as renderTemplate, g as maybeRenderHead } from "./server_CR6e1SMo.mjs";
 import "./_astro_assets_CYMCoJCi.mjs";
 import { t as $$MainLayout } from "./MainLayout_DA7o5NXz.mjs";
-import { t as db_default } from "./db_yf0CV2fq.mjs";
+import { t as db_default } from "./db_DPXSsOFx.mjs";
 //#region src/pages/contact.astro
 var contact_exports = /* @__PURE__ */ __exportAll({
 	default: () => $$Contact,

@@ -3,7 +3,7 @@ import { E as createComponent, a as renderComponent, f as renderTemplate, g as m
 import "./_astro_assets_CYMCoJCi.mjs";
 import { t as SITE_DESCRIPTION } from "./consts_C_10tp3D.mjs";
 import { t as $$MainLayout } from "./MainLayout_DA7o5NXz.mjs";
-import { t as db_default } from "./db_yf0CV2fq.mjs";
+import { t as db_default } from "./db_DPXSsOFx.mjs";
 import { n as $$HowWorks, t as $$Testimonials } from "./Testimonials_BmHZSD-b.mjs";
 //#region src/pages/services/index.astro
 var services_exports = /* @__PURE__ */ __exportAll({
