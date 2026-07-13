@@ -16,10 +16,10 @@ try {
         if (prop === 'then') {
           return (resolve: any) => resolve({ data: [], error: "No DB connection" });
         }
-        return new Proxy(() => {}, proxyHandler);
+        return new Proxy(() => { }, proxyHandler);
       },
       apply() {
-        return new Proxy(() => {}, proxyHandler);
+        return new Proxy(() => { }, proxyHandler);
       }
     };
     db = new Proxy({}, proxyHandler);
