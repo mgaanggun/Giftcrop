@@ -16,6 +16,7 @@
     "@astrojs/node": "^11.0.2",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^11.0.2",
     "@lucide/astro": "^1.23.0",
     "@supabase/supabase-js": "^2.110.2",
     "@tailwindcss/typography": "^0.5.20",
