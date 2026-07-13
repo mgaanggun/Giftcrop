@@ -1,0 +1,23 @@
+import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
+import { E as createComponent, a as renderComponent, f as renderTemplate, g as maybeRenderHead } from "./server_CR6e1SMo.mjs";
+import "./_astro_assets_CYMCoJCi.mjs";
+import { t as $$MainLayout } from "./MainLayout_C1Mbp3iP.mjs";
+//#region src/pages/privacy.astro
+var privacy_exports = /* @__PURE__ */ __exportAll({
+	default: () => $$Privacy,
+	file: () => $$file,
+	url: () => $$url
+});
+var $$Privacy = createComponent(($$result, $$props, $$slots) => {
+	return renderTemplate`${renderComponent($$result, "Layout", $$MainLayout, {
+		"title": "Kebijakan Privasi",
+		"description": "Kebijakan Privasi perusahaan kami."
+	}, { "default": ($$result) => renderTemplate`${maybeRenderHead($$result)}<div class="min-h-[60vh] text-base-content bg-base-100 py-16"><div class="container mx-auto px-4 max-w-4xl"><h1 class="text-4xl md:text-5xl font-extrabold mb-10 text-center">Kebijakan <span class="text-main-200">Privasi</span></h1><div class="bg-base-200/30 p-8 md:p-12 rounded-3xl border border-base-300 shadow-sm prose prose-lg max-w-none"><p>Kami sangat menghargai privasi Anda. Halaman ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat menggunakan layanan kami.</p><h3 class="text-2xl font-bold mt-8 mb-4">1. Informasi yang Kami Kumpulkan</h3><p>Kami mengumpulkan informasi yang Anda berikan secara langsung kepada kami saat Anda menghubungi kami, mengisi formulir pemesanan, atau menggunakan layanan di website kami. Informasi tersebut dapat mencakup nama, alamat email, nomor telepon, dan detail pesanan perusahaan Anda.</p><h3 class="text-2xl font-bold mt-8 mb-4">2. Penggunaan Informasi</h3><p>Informasi yang kami kumpulkan digunakan secara eksklusif untuk:</p><ul><li>Memberikan pelayanan terbaik dan memproses pesanan Anda secara akurat.</li><li>Menghubungi Anda terkait konfirmasi pesanan, desain, atau pengiriman.</li><li>Meningkatkan kualitas layanan dan produk kami berdasarkan masukan Anda.</li></ul><h3 class="text-2xl font-bold mt-8 mb-4">3. Keamanan Data</h3><p>Kami menerapkan berbagai standar dan langkah keamanan untuk menjaga keselamatan informasi pribadi Anda. Kami tidak akan menjual, menyewakan, atau membagikan informasi pribadi Anda kepada pihak ketiga tanpa izin Anda, kecuali diwajibkan oleh hukum yang berlaku.</p></div></div></div>` })}`;
+}, "D:/astro/GiftCorp/src/pages/privacy.astro", void 0);
+var $$file = "D:/astro/GiftCorp/src/pages/privacy.astro";
+var $$url = "/privacy";
+//#endregion
+//#region \0virtual:astro:page:src/pages/privacy@_@astro
+var page = () => privacy_exports;
+//#endregion
+export { page };

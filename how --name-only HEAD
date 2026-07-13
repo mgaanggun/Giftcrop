@@ -1,0 +1,10 @@
+[33mcommit 766ac1ca6b3398c07930e9e50d3ed3d64256afc8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: gu4rdian059-star <gu4rdian059@gmail.com>
+Date:   Mon Jul 13 21:09:11 2026 +0700
+
+    update website
+
+ package.json                  | 2 [32m+[m[31m-[m
+ src/pages/api/submit-quote.ts | 2 [32m+[m[31m-[m
+ src/styles/global.css         | 3 [32m++[m[31m-[m
+ 3 files changed, 4 insertions(+), 3 deletions(-)
