@@ -5,7 +5,7 @@ import db from "../../lib/db";
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
-  
+
   const email = formData.get("email")?.toString();
   const phone = formData.get("phone")?.toString();
   const quantity = formData.get("quantity")?.toString();
